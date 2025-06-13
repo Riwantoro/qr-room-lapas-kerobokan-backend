@@ -121,6 +121,18 @@ def health_check():
         "data_loaded": bool(data)
     })
 
+# Debug endpoint
+@app.route('/debug', methods=['GET'])
+def debug_info():
+    return jsonify({
+        "data_keys": list(data.keys()) if data else [],
+        "data_type": type(data).__name__,
+        "data_length": len(data) if data else 0,
+        "has_05_03_2025": '05_03_2025' in data if data else False,
+        "current_directory": os.getcwd(),
+        "files_in_directory": os.listdir('.') if os.path.exists('.') else []
+    })
+
 # Error handlers
 @app.errorhandler(404)
 def not_found(error):
