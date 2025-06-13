@@ -5,16 +5,7 @@ import json
 import os
 
 app = Flask(__name__)
-
-# CORS configuration - allow Netlify domain
-CORS(app, origins=[
-    "http://localhost:3000",  # Local development
-    "http://localhost:5173",  # Vite dev server
-    "https://*.netlify.app",  # All Netlify domains
-    "https://qrroom-lapaskerobokan.netlify.app/"     # Netlify domains
-], 
-methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-allow_headers=['Content-Type', 'Authorization'])
+CORS(app)  # Enable CORS for all routes
 
 # Load data from JSON file
 try:
